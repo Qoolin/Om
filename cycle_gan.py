@@ -3,6 +3,11 @@ from PIL import Image
 from Cycle_gan_train import Generator  # Импортируем класс модели
 from pathlib import Path
 from torchvision import transforms
+import gdown
+#Ссылка на веса
+url = "https://drive.google.com/uc?id=1-O2wcB9VOKCUgPWEyMu1-n__RGO53m0y"
+output = "cycle_gan.pth"  # имя файла весов
+gdown.download(url, output, quiet=False)
 
 class Cycle_gan:
     def __init__(self, model_path=None):
