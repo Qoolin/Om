@@ -7,12 +7,12 @@ from diffusers import StableDiffusionPipeline
 from cycle_gan import Cycle_gan  # Подключение CycleGAN
 
 # Определяем устройство (CPU или GPU)
-device = "cuda" if torch.cuda.is_available() else "cpu"
+#device = "cuda" if torch.cuda.is_available() else "cpu"
 
 # Загружаем модели
 cycle_gan = Cycle_gan()
 stable_diffusion = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4")
-stable_diffusion.to(device)
+#stable_diffusion.to(device)
 
 transform = transforms.Compose([
     transforms.Resize(512, interpolation=transforms.InterpolationMode.BICUBIC),
