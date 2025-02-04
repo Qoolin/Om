@@ -12,7 +12,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 # Загружаем модели
 cycle_gan = Cycle_gan()
 stable_diffusion = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4")
-stable_diffusion.to_empty()
+stable_diffusion.to(device)
 
 transform = transforms.Compose([
     transforms.Resize(512, interpolation=transforms.InterpolationMode.BICUBIC),
