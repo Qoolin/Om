@@ -11,7 +11,7 @@ gdown.download(url, output, quiet=False)
 
 class Cycle_gan:
     def __init__(self, model_path=None):
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        # self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
         # Универсальный путь к модели в корневой папке проекта
         if model_path is None:
@@ -28,7 +28,7 @@ class Cycle_gan:
     def load_model(self, model_path):
         """Загружает модель и переводит в режим инференса."""
         # Создаём генератор (3,3 - RGB в RGB)
-        gen_AB = Generator(3, 3).to(self.device)
+        gen_AB = Generator(3, 3) #.to(self.device)
 
         # Загружаем сохранённые веса
         checkpoint = torch.load(model_path, map_location=self.device)
