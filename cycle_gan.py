@@ -11,7 +11,7 @@ gdown.download(url, output, quiet=False)
 
 class Cycle_gan:
     def __init__(self, model_path=None):
-        # self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        # self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu") на стримлит лишнее
 
         # Универсальный путь к модели в корневой папке проекта
         if model_path is None:
@@ -31,7 +31,7 @@ class Cycle_gan:
         gen_AB = Generator(3, 3) #.to(self.device)
 
         # Загружаем сохранённые веса
-        checkpoint = torch.load(model_path, map_location=self.device)
+        checkpoint = torch.load(model_path)#, map_location=self.device)
         gen_AB.load_state_dict(checkpoint['gen_AB'])
         gen_AB.eval()  # Переводим в режим инференса
         return gen_AB
