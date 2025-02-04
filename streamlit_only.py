@@ -7,7 +7,7 @@ from diffusers import StableDiffusionPipeline
 from cycle_gan import Cycle_gan  # Подключение CycleGAN
 
 # Определяем устройство (CPU или GPU)
-#device = "cuda" if torch.cuda.is_available() else "cpu"
+#device = "cuda" if torch.cuda.is_available() else "cpu" на стримлит лишнее
 
 # Загружаем модели
 cycle_gan = Cycle_gan()
