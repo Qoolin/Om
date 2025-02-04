@@ -3,15 +3,11 @@ from PIL import Image
 from Cycle_gan_train import Generator  # Импортируем класс модели
 from pathlib import Path
 from torchvision import transforms
-import gdown
-#Ссылка на веса
-url = "https://drive.google.com/uc?id=1-O2wcB9VOKCUgPWEyMu1-n__RGO53m0y"
-output = "cycle_gan.pth"  # имя файла весов
-gdown.download(url, output, quiet=False)
 
 class Cycle_gan:
     def __init__(self, model_path=None):
-        # self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu") на стримлит лишнее, раскоментируйте если есть ГПУ
+        #self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu") раскомментруйте если не в стримлит
+        # облаке
 
         # Универсальный путь к модели в корневой папке проекта
         if model_path is None:
@@ -28,10 +24,12 @@ class Cycle_gan:
     def load_model(self, model_path):
         """Загружает модель и переводит в режим инференса."""
         # Создаём генератор (3,3 - RGB в RGB)
-        gen_AB = Generator(3, 3) #.to(self.device)
+        gen_AB = Generator(3, 3)#.to(self.device) раскомментруйте если не в стримлит
+        # облаке
+
 
         # Загружаем сохранённые веса
-        checkpoint = torch.load(model_path, map_location='cpu')#, map_location=self.device если есть ГПУ
+        checkpoint = torch.load(model_path) #, map_location=self.device) если не в облаке
         gen_AB.load_state_dict(checkpoint['gen_AB'])
         gen_AB.eval()  # Переводим в режим инференса
         return gen_AB
@@ -43,7 +41,8 @@ class Cycle_gan:
             content_img = content_img.convert("RGB")
 
         # Преобразуем изображение для подачи в модель
-        content_tensor = self.transform(content_img).unsqueeze(0) #.to(self.device) если есть ГПУ
+        content_tensor = self.transform(content_img).unsqueeze(0)# раскомментруйте если не в стримлит
+        # облаке.to(self.device)
 
         with torch.no_grad():  # Отключаем градиенты для инференса
             styled_img = self.model(content_tensor)

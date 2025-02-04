@@ -40,7 +40,7 @@ async def generate_image(
         content_img = transform(content_img)
         result_img = Image.blend(content_img, result_img, style_strength)  # Регулировка стиля
     else:
-        prompt = "Lets style uploaded image like Monet "
+        prompt = "style uploaded image like Claude Monet "
        # result_img = content_img.copy()
         result_img = stable_diffusion(prompt=prompt, guidance_scale=style_strength * 10).images[0]  # Stable Diffusion
 

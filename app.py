@@ -29,5 +29,8 @@ if st.button("Применить стиль"):
             output_image = Image.open(io.BytesIO(response.content))
             st.image(output_image, caption="Результат переноса стиля", use_container_width=True)
             st.image(content_image , caption="Оригинал", use_container_width=True)
-        else:
+            save_path = "saved_image1.png"
+            output_image.save(save_path)
+            st.write(f"Изображение сохранено как {save_path}")
+        else:а названия классов в метках недолжно быть?
             st.error("Ошибка обработки изображения")
